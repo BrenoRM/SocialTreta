@@ -1,0 +1,6 @@
+<% @publicacoes.each do |p|%>
+    <label> <%= p.user.email%></label><br>
+    <label> created: <%= p.created_at%></label><br>
+    <p> <%= p.text%> </p>
+    <hr>
+<% end %>

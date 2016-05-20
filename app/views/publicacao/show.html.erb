@@ -1,0 +1,9 @@
+<% if @publicacao.present? %>
+    <label> id <%= @publicacao.id %></label><br>
+    <label> timestamp: <%= @publicacao.updated_at %> </label><br>
+    <p> <%= @publicacao.text %></p>
+
+    <%else%>
+
+    <h2> RESOURCE NOT FOUND</h2>
+<%end%>
