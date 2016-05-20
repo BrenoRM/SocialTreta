@@ -14,24 +14,21 @@
               <%= image_tag 'admin-lte/dist/img/user2-160x160.jpg', class: 'profile-user-img img-responsive img-circle' %>
 
               <h3 class="profile-username text-center">
-
+                <%= @profile.nome %>
               </h3>
 
-              <p class="text-muted text-center">Software Engineer</p>
+              <p class="text-muted text-center">
+                <%= @profile.formacao %>
+              </p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">1,322</a>
+                  <b>Amigos</b> <a class="pull-right">0</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">543</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Friends</b> <a class="pull-right">13,287</a>
+                  <b>Postagens</b> <a class="pull-right"><%= current_user.publicacaos.count %></a>
                 </li>
               </ul>
-
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
             </div>
             <!-- /.box-body -->
           </div>
@@ -40,168 +37,165 @@
           <!-- About Me Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
+              <h3 class="box-title">Sobre Mim</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+              <strong><i class="fa fa-briefcase margin-r-5"></i>Partido Político</strong>
 
               <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
+                <%= @profile.partido %>
               </p>
 
               <hr>
 
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+              <strong><i class="fa fa-birthday-cake margin-r-5"></i>Aniversário</strong>
 
-              <p class="text-muted">Malibu, California</p>
+              <p class="text-muted">
+                <%= @profile.data_nascimento %>
+              </p>
 
               <hr>
 
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+              <strong><i class="fa fa-heart margin-r-5"></i>Estado Civil</strong>
+
+              <p class="text-muted">
+                <%= @profile.estado_civil %>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i>Localização</strong>
+
+              <p class="text-muted">
+                <%= "#{@profile.cidade} - #{@profile.estado}" %>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i>Preferências</strong>
 
               <p>
-                <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span>
+                <span class="label label-danger">Versátil</span>
+                <span class="label label-success">Novinho</span>
+                <span class="label label-info">Ursos</span>
+                <span class="label label-warning">+18</span>
+                <span class="label label-primary">NUDES</span>
               </p>
 
               <hr>
 
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
 
-        <!-- /.col -->
+        <div class="col-md-9 pull-left">
+          <h3><i class="fa fa-edit"></i> Nova Publicação</h3>
+        </div>
+
         <div class="col-md-9">
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Feed de Notícias</h3>
+            <div class="box-header">
+              <div class="user-block">
+                <%= image_tag 'admin-lte/dist/img/user2-160x160.jpg', class: 'img-circle' %>
+                <span class="username"><a href="#"><%= @profile.nome %></a></span>
+                <span class="description"> Nova Publicação</span>
+              </div>
             </div>
-            <!-- /.box-header -->
+
+            <%= form_for Publicacao.new, url: {controller: :publicacao, action: :create} do |f| %>
+              <div class="box-body">
+                <%= f.text_area :text, class: 'form-control', rows: 3, placeholder: 'No que você está pensando?' %>
+              </div>
+
+              <div class="box-footer">
+                <%= f.submit 'Publicar', class: 'btn btn-success pull-right btn-sm' %>
+              </div>
+            <%end%>
+            <!-- /.box -->
+          </div>
+        </div>
+        <!-- /.col -->
+
+        <div class="col-md-9 pull-left">
+          <h3><i class="fa fa-newspaper-o"></i> Suas Publicações</h3>
+        </div>
+
+        <div class="col-md-9">
+
+          <div class="box box-primary">
 
             <div class="box-body">
-              <div class="active tab-pane" id="activity">
-              <!-- Post -->
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Shared publicly - 7:30 PM today</span>
-                </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers,
-                  typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome
-                  tools to help create filler text for everyone from bacon lovers
-                  to Charlie Sheen fans.
-                </p>
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                      (5)</a></li>
-                </ul>
+                <% current_user.publicacaos.each do |p| %>
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
-              </div>
-              <!-- /.post -->
+                    <!-- Box Comment -->
+                    <div class="box box-widget">
+                      <div class="box-header with-border">
+                        <div class="user-block">
+                          <%= image_tag 'admin-lte/dist/img/user2-160x160.jpg', class: 'img-circle' %>
+                          <span class="username"><a href="#"><%= @profile.nome %></a></span>
+                          <span class="description">Publicado em <%= p.created_at.strftime('%d/%m/%Y às %H:%M') %></span>
+                        </div>
 
-              <!-- Post -->
-              <div class="post clearfix">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Sent you a message - 3 days ago</span>
-                </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers,
-                  typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome
-                  tools to help create filler text for everyone from bacon lovers
-                  to Charlie Sheen fans.
-                </p>
+                        <div class="box-tools">
+                          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                          </button>
+                        </div>
 
-                <form class="form-horizontal">
-                  <div class="form-group margin-bottom-none">
-                    <div class="col-sm-9">
-                      <input class="form-control input-sm" placeholder="Response">
-                    </div>
-                    <div class="col-sm-3">
-                      <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.post -->
-
-              <!-- Post -->
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                  <span class="description">Posted 5 photos - 5 days ago</span>
-                </div>
-                <!-- /.user-block -->
-                <div class="row margin-bottom">
-                  <div class="col-sm-6">
-                    <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
                       </div>
-                      <!-- /.col -->
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                      <!-- /.box-header -->
+
+                      <div class="box-body">
+                        <p><%= p.text %></p>
+                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Gostar</button>
+                        <span class="pull-right text-muted"><%= "#{p.comments.count} comentários"%></span>
                       </div>
-                      <!-- /.col -->
+                      <!-- /.box-body -->
+
+                      <% p.comments.each do |c| %>
+                          <div class="box-footer box-comments">
+                            <div class="box-comment">
+                              <!-- User image -->
+                              <%= image_tag 'admin-lte/dist/img/user2-160x160.jpg', class:"img-circle img-sm" %>
+
+                              <div class="comment-text">
+                                <span class="username">
+                                  <%= c.user.profile.nome %>
+                                  <span class="text-muted pull-right">
+                                    <%= c.created_at.strftime('%d/%m/%Y às %H:%M') %>
+                                  </span>
+                                </span><!-- /.username -->
+                                    <%= c.text %>
+                              </div>
+                              <!-- /.comment-text -->
+                            </div>
+                            <!-- /.box-comment -->
+                          </div>
+                          <!-- /.box-footer -->
+                      <%end%>
+
+                      <div class="box-footer">
+                        <%= form_for Comment.new, url: {controller: :comments, publicacao_id: p.id, action: :create} do |f| %>
+                            <%= image_tag 'admin-lte/dist/img/user2-160x160.jpg', class:"img-responsive img-circle img-sm" %>
+                            <div class="img-push">
+                              <div class="col-sm-10">
+                                <%= f.text_field :text, class: 'form-control input-sm', placeholder: 'Faça seu comentário' %>
+                              </div>
+                              <div class="col-sm-2">
+                                <%= f.submit "Publicar", class: 'btn btn-success pull-right btn-block btn-sm' %>
+                              </div>
+                            </div>
+                        <%end%>
+                      </div>
+                      <!-- /.box-footer -->
                     </div>
-                    <!-- /.row -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
+                    <!-- /.box -->
 
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                      (5)</a></li>
-                </ul>
+                <% end %>
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
-              </div>
-              <!-- /.post -->
-            </div>
             </div>
         </div>
         <!-- /.col -->

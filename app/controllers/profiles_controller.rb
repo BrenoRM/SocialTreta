@@ -17,7 +17,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-
     @profile = Profile.find_by(id: id_params)
     @profile.update_attributes(profile_parms)
 

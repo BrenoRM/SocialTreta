@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment.publicacao = @publicacao
 
     if @comment.save
-      redirect_to action: :index
+      redirect_to controller: :profiles, action: :show, id: current_user.profile.id
     else
       redirect_to action: :edit
     end
@@ -22,14 +22,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find_by(id: id_params, user_id: current_user.id,
-                               publicacao_id: @publicacao.id)
+    @comment = Comment.find_by(id: id_params, user_id: current_user.id, publicacao_id: @publicacao.id)
     @comment.destroy
   end
 
   def show
-    @comment = Comment.find_by(id: id_params, user_id: current_user.id,
-                               publicacao_id: @publicacao.id)
+    @comment = Comment.find_by(id: id_params, user_id: current_user.id, publicacao_id: @publicacao.id)
   end
 
   def index
