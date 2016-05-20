@@ -22,7 +22,8 @@ class PublicacaoController < ApplicationController
   end
 
   def destroy
-
+    @publicacao = Publicacao.find_by(id: id_params, user_id: current_user.id)
+    @publicacao.destroy
   end
 
   def show
@@ -34,7 +35,7 @@ class PublicacaoController < ApplicationController
   end
 
   def edit
-    @publicacao = Publicacao.find_by(id: id_params)
+    @publicacao = Publicacao.find_by(id: id_params, user_id: current_user.id)
   end
 
   private

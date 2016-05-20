@@ -1,2 +1,14 @@
-<h1>Profiles#new</h1>
-<p>Find me in app/views/profiles/new.html.erb</p>
+<h1>Criar seu Profile</h1>
+<%= form_for @profile, url: {action: :create} do |p| %>
+
+    <a>Nome: </a><%= p.text_field :nome %><br>
+    <a>Data de Nascimento: </a><%= p.text_field :data_nascimento %><br>
+    <a>Partido Político: </a><%= p.text_field :partido %><br>
+    <a>Nivel de Treta :</a><%= p.text_field :nivel_de_treta %><br>
+    <a>Cidade: </a><%= p.text_field :cidade %><br>
+    <a>Estado: </a><%= p.text_field :estado %><br>
+    <a>Formação: </a><%= p.text_field :formacao %><br>
+    <a>Estado Civil: </a><%= p.text_field :estado_civil %><br>
+    <%= p.submit "Criar Profile" %>
+
+<% end %>
