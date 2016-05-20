@@ -1,0 +1,23 @@
+{
+  "name": "SocialTreta",
+  "homepage": "https://github.com/BrenoRM/SocialTreta",
+  "authors": [
+    "Francisco José A. C. Souza <francisceioseph@gmail.com>"
+  ],
+  "description": "Uma rede social de tretas",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "admin-lte": "~2.3.3",
+    "Ionicons": "ionicons#^2.0.1",
+    "components-font-awesome": "^4.6.3"
+  }
+}
